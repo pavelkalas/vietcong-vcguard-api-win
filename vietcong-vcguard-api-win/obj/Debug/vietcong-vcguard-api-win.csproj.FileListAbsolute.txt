@@ -1,0 +1,13 @@
+C:\Users\adrien.WHARESQUARE\source\repos\vietcong-vcguard-api-win\vietcong-vcguard-api-win\bin\Debug\vietcong-vcguard-api-win.dll
+C:\Users\adrien.WHARESQUARE\source\repos\vietcong-vcguard-api-win\vietcong-vcguard-api-win\bin\Debug\vietcong-vcguard-api-win.pdb
+C:\Users\adrien.WHARESQUARE\source\repos\vietcong-vcguard-api-win\vietcong-vcguard-api-win\obj\Debug\vietcong-vcguard-api-win.csproj.AssemblyReference.cache
+C:\Users\adrien.WHARESQUARE\source\repos\vietcong-vcguard-api-win\vietcong-vcguard-api-win\obj\Debug\vietcong-vcguard-api-win.csproj.CoreCompileInputs.cache
+C:\Users\adrien.WHARESQUARE\source\repos\vietcong-vcguard-api-win\vietcong-vcguard-api-win\obj\Debug\vietcong-vcguard-api-win.dll
+C:\Users\adrien.WHARESQUARE\source\repos\vietcong-vcguard-api-win\vietcong-vcguard-api-win\obj\Debug\vietcong-vcguard-api-win.pdb
+Q:\source-codes\vietcong-game\vietcong-vcguard-api-win\vietcong-vcguard-api-win\bin\Debug\vietcong-vcguard-api-win.dll
+Q:\source-codes\vietcong-game\vietcong-vcguard-api-win\vietcong-vcguard-api-win\bin\Debug\vietcong-vcguard-api-win.pdb
+Q:\source-codes\vietcong-game\vietcong-vcguard-api-win\vietcong-vcguard-api-win\obj\Debug\vietcong-vcguard-api-win.csproj.AssemblyReference.cache
+Q:\source-codes\vietcong-game\vietcong-vcguard-api-win\vietcong-vcguard-api-win\obj\Debug\vietcong-vcguard-api-win.csproj.CoreCompileInputs.cache
+Q:\source-codes\vietcong-game\vietcong-vcguard-api-win\vietcong-vcguard-api-win\obj\Debug\vietcong-vcguard-api-win.dll
+Q:\source-codes\vietcong-game\vietcong-vcguard-api-win\vietcong-vcguard-api-win\obj\Debug\vietcong-vcguard-api-win.pdb
+Q:\source-codes\vietcong-game\vietcong-vcguard-api-win\vietcong-vcguard-api-win\bin\Debug\vietcong-vcguard-api-win.xml

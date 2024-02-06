@@ -1,0 +1,442 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>vietcong-vcguard-api-win</name>
+    </assembly>
+    <members>
+        <member name="M:vietcong_vcguard_api_win.ListBoxSetData.SetData(System.IntPtr,System.String)">
+            <summary>
+            Sets vcguard listbox (console) data.
+            </summary>
+            <param name="hWnd"></param>
+            <param name="text"></param>
+        </member>
+        <member name="M:vietcong_vcguard_api_win.ListBoxGetData.GetData(System.IntPtr)">
+            <summary>
+            Get vcguard listbox (console) data.
+            </summary>
+            <param name="hwnd"></param>
+            <returns></returns>
+        </member>
+        <member name="T:VCDatabase">
+            <summary>
+            VCDatabase is simple database for storing any data.
+            </summary>
+        </member>
+        <member name="M:VCDatabase.#ctor">
+            <summary>
+            VCDatabase constructor.
+            </summary>
+        </member>
+        <member name="M:VCDatabase.RecordCreate(System.String,System.String)">
+            <summary>
+            Create the database and store data.
+            </summary>
+            <param name="name"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:VCDatabase.RecordExists(System.String)">
+            <summary>
+            Checks if exists
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:VCDatabase.RecordDelete(System.String)">
+            <summary>
+            Delete the database record.
+            </summary>
+            <param name="name"></param>
+        </member>
+        <member name="M:VCDatabase.RecordRead(System.String)">
+            <summary>
+            Get data from database.
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:VCDatabase.DatabaseCreate(System.String)">
+            <summary>
+            Creates a database.
+            </summary>
+            <param name="name"></param>
+        </member>
+        <member name="M:VCDatabase.DatabaseDrop(System.String)">
+            <summary>
+            Delete the database with all records.
+            </summary>
+            <param name="name"></param>
+        </member>
+        <member name="M:VCDatabase.DatabaseExists(System.String)">
+            <summary>
+            Checks if database exist.
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:VCDatabase.DatabaseSelect(System.String)">
+            <summary>
+            Select database to manipulate with records.
+            </summary>
+            <param name="name"></param>
+        </member>
+        <member name="T:VCDatabase.DatabaseStructure">
+            <summary>
+            Database structure
+            </summary>
+        </member>
+        <member name="F:VCDatabase.DatabaseStructure.NAME">
+            <summary>
+            Database name
+            </summary>
+        </member>
+        <member name="F:VCDatabase.DatabaseStructure.RECORDS_COUNT">
+            <summary>
+            Records count in database.
+            </summary>
+        </member>
+        <member name="M:VCDatabase.GetDatabases">
+            <summary>
+            Get databases.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:VCDatabase.Md5(System.String)">
+            <summary>
+            Converting the text to safe database folder structure name.
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="T:VCGuardAPI">
+            <summary>
+            VCGuard API is api for sending, listening and some settings and other..
+            </summary>
+        </member>
+        <member name="F:VCGuardAPI.API_AUTHOR">
+            <summary>
+            Author of the assembly file.
+            </summary>
+        </member>
+        <member name="F:VCGuardAPI.waitBeforeAct">
+            <summary>
+            Security settings.
+            </summary>
+        </member>
+        <member name="F:VCGuardAPI.NO_SECURITY">
+            <summary>
+            Security levels.
+            LOW
+            </summary>
+        </member>
+        <member name="F:VCGuardAPI.NORMAL_SECURITY">
+            <summary>
+            Normal security
+            </summary>
+        </member>
+        <member name="F:VCGuardAPI.HIGH_SECURITY">
+            <summary>
+            High secuity
+            </summary>
+        </member>
+        <member name="M:VCGuardAPI.ConnectTo(System.String)">
+            <summary>
+            Connect to the server using the port.
+            </summary>
+            <param name="port"></param>
+        </member>
+        <member name="M:VCGuardAPI.GetWindowHandle">
+            <summary>
+            Get handle of main server window.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:VCGuardAPI.GetWindowTitle">
+            <summary>
+            Get title of main server gui window.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:VCGuardAPI.GetPID">
+            <summary>
+            Get PID of server process.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:VCGuardAPI.Disconnect">
+            <summary>
+            Disconnect from the server.
+            </summary>
+        </member>
+        <member name="M:VCGuardAPI.IsConnected">
+            <summary>
+            Check if is the server connected with the API.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:VCGuardAPI.SetSecurityLevel(System.Int32)">
+            <summary>
+            Sets the security level of the API (good when u make public server tool)
+            </summary>
+            <param name="lvl"></param>
+        </member>
+        <member name="M:VCGuardAPI.SetLogging(System.Boolean)">
+            <summary>
+            Enable or disable logging debug into your console application.
+            </summary>
+            <param name="enabled"></param>
+        </member>
+        <member name="M:VCGuardAPI.Say(System.String)">
+            <summary>
+            Sends dc message from server.
+            </summary>
+            <param name="text"></param>
+        </member>
+        <member name="M:VCGuardAPI.Adminsay(System.String)">
+            <summary>
+            Sends admin message to server.
+            </summary>
+            <param name="text"></param>
+        </member>
+        <member name="M:VCGuardAPI.Serversay(System.String)">
+            <summary>
+            Sends server message to server.
+            </summary>
+            <param name="text"></param>
+        </member>
+        <member name="M:VCGuardAPI.Redsay(System.String)">
+            <summary>
+            Sends red text to game.
+            </summary>
+            <param name="text"></param>
+        </member>
+        <member name="M:VCGuardAPI.RawSend(System.String)">
+            <summary>
+            Sends the raw string to vcguard (this can be hazardous when u making public tool and uses this API)
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="M:VCGuardAPI.ClearList">
+            <summary>
+            Clears the console view on vcguard window.
+            </summary>
+        </member>
+        <member name="M:VCGuardAPI.GetVersion">
+            <summary>
+            Get current vcguard version.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:VCGuardAPI.GetMissionName">
+            <summary>
+            Get full mission (map) name.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:VCGuardAPI.GetPlayerCount">
+            <summary>
+            Get online players count.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:VCGuardAPI.GetLastWrittenMessage">
+            <summary>
+            Parses last written message tries from /dev/chatlog.txt
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:VCGuardAPI.GetLastConnectionInfo">
+            <summary>
+            Parse /logs/connections.txt log file tries.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:VCGuardAPI.GetFilesize(System.String)">
+            <summary>
+            Get file size (LONG).
+            </summary>
+            <param name="filePath"></param>
+            <returns></returns>
+        </member>
+        <member name="M:VCGuardAPI.GetLastFileLine(System.String)">
+            <summary>
+            Get a last file line string.
+            </summary>
+            <param name="filePath"></param>
+            <returns></returns>
+        </member>
+        <member name="M:VCGuardAPI.GetWorkingDirectory">
+            <summary>
+            Get directory of where was server started.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:VCGuardAPI.GetListboxData">
+            <summary>
+            Gets a data from vcguard listbox.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:VCGuardAPI.PlayerStruct">
+            <summary>
+            Struct of player List.
+            </summary>
+        </member>
+        <member name="P:VCGuardAPI.PlayerStruct.Id">
+            <summary>
+            Player ID
+            </summary>
+        </member>
+        <member name="P:VCGuardAPI.PlayerStruct.Ping">
+            <summary>
+            Player PING
+            </summary>
+        </member>
+        <member name="P:VCGuardAPI.PlayerStruct.Name">
+            <summary>
+            Player NAME
+            </summary>
+        </member>
+        <member name="P:VCGuardAPI.PlayerStruct.Kills">
+            <summary>
+            Player KILLS
+            </summary>
+        </member>
+        <member name="P:VCGuardAPI.PlayerStruct.Deaths">
+            <summary>
+            Player DEATHS
+            </summary>
+        </member>
+        <member name="M:VCGuardAPI.GetPlayerList">
+            <summary>
+            Get complete player list including player id, name, kills, deaths and ping.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:VCGuardAPI.GetCommandResponse(System.String)">
+            <summary>
+            Get custom command response.
+            </summary>
+            <param name="command"></param>
+            <returns></returns>
+        </member>
+        <member name="M:VCGuardAPI.GetServerFPS">
+            <summary>
+            Get live server FPS.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:VCGuardAPI.PlayerTableStructure">
+            <summary>
+            VCGuard window table data structure
+            </summary>
+        </member>
+        <member name="F:VCGuardAPI.PlayerTableStructure.Number">
+            <summary>
+            Number in vcguard  table.
+            </summary>
+        </member>
+        <member name="F:VCGuardAPI.PlayerTableStructure.Id">
+            <summary>
+            Player ID.
+            </summary>
+        </member>
+        <member name="F:VCGuardAPI.PlayerTableStructure.Name">
+            <summary>
+            Player name.
+            </summary>
+        </member>
+        <member name="F:VCGuardAPI.PlayerTableStructure.Side">
+            <summary>
+            Player side, like US or VC.
+            </summary>
+        </member>
+        <member name="F:VCGuardAPI.PlayerTableStructure.Class">
+            <summary>
+            Player class like Soldier, Medic, Engineer, Radioman, Machineguner or Sniper.
+            </summary>
+        </member>
+        <member name="F:VCGuardAPI.PlayerTableStructure.Points">
+            <summary>
+            Players points (taken flags or kills on DM/TDM)
+            </summary>
+        </member>
+        <member name="F:VCGuardAPI.PlayerTableStructure.Frags">
+            <summary>
+            Frags on DM/TDM.
+            </summary>
+        </member>
+        <member name="F:VCGuardAPI.PlayerTableStructure.Kills">
+            <summary>
+            Players kills.
+            </summary>
+        </member>
+        <member name="F:VCGuardAPI.PlayerTableStructure.Deaths">
+            <summary>
+            Players deaths.
+            </summary>
+        </member>
+        <member name="F:VCGuardAPI.PlayerTableStructure.Ping">
+            <summary>
+            Players ping.
+            </summary>
+        </member>
+        <member name="F:VCGuardAPI.PlayerTableStructure.IpAddress">
+            <summary>
+            Players ip address.
+            </summary>
+        </member>
+        <member name="F:VCGuardAPI.PlayerTableStructure.CountryName">
+            <summary>
+            Players country name.
+            </summary>
+        </member>
+        <member name="M:VCGuardAPI.GetVcguardTablePlayers">
+            <summary>
+            Get players from vcguard window table.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:VCPath">
+            <summary>
+            All generics path for game and vcguard.
+            </summary>
+        </member>
+        <member name="F:VCPath.CHATLOG">
+            <summary>
+            Chatlog file.
+            </summary>
+        </member>
+        <member name="F:VCPath.LOGGING">
+            <summary>
+            vcguard connections file.
+            </summary>
+        </member>
+        <member name="F:VCPath.CONSOLE">
+            <summary>
+            Console file.
+            </summary>
+        </member>
+        <member name="F:VCPath.LOGS_DIR">
+            <summary>
+            /logs/ directory.
+            </summary>
+        </member>
+        <member name="F:VCPath.DEV_DIR">
+            <summary>
+            /dev/ directory.
+            </summary>
+        </member>
+        <member name="F:VCPath.SERVER_ROOT_FOLDER">
+            <summary>
+            Root directory (running server instance)
+            </summary>
+        </member>
+        <member name="M:VCPath.#ctor(System.String)">
+            <summary>
+            Constructor for build these path structure.
+            </summary>
+            <param name="path"></param>
+        </member>
+    </members>
+</doc>

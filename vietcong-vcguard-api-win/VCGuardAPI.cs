@@ -4,9 +4,10 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading;
+using TestStack.White;
+using TestStack.White.UIItems.WindowItems;
 using vietcong_vcguard_api_win;
 
 /// <summary>
@@ -14,6 +15,7 @@ using vietcong_vcguard_api_win;
 /// </summary>
 public class VCGuardAPI
 {
+    // Contstants to manipulate with GUI components.
     private const int WM_SETTEXT = 0x000C;
     private const int WM_KEYDOWN = 0x0100;
     private const int WM_KEYUP = 0x0101;
@@ -21,6 +23,7 @@ public class VCGuardAPI
     private const int BM_CLICK = 0x00F5;
     private const int WM_GETTEXT = 0x000D;
 
+    // Important imports to manipulate with GUI components.
     [DllImport("user32.dll", CharSet = CharSet.Auto)] private static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, IntPtr wParam, string lParam);
     [DllImport("user32.dll", SetLastError = true)] private static extern IntPtr FindWindowEx(IntPtr hwndParent, IntPtr hwndChildAfter, string lpszClass, string lpszWindow);
     [DllImport("user32.dll")][return: MarshalAs(UnmanagedType.Bool)] private static extern bool PostMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
@@ -34,34 +37,36 @@ public class VCGuardAPI
     private static readonly ListBoxSetData lbsd = new ListBoxSetData();
     private static readonly ListBoxGetData lbgd = new ListBoxGetData();
 
-    private static bool connected = false;
-    private static bool logging = true;
+    private static bool connected = false;   // ... checks if is server connected.
+    private static bool logging = true;      // ... enables/disables logging messages from this API.
 
-    private static IntPtr hwdHandle;
-    private static IntPtr cbtnHandle;
-    private static IntPtr txtHandle;
-    private static string title;
-
+    private static IntPtr hwdHandle;         // ... vcguard window handle
+    private static IntPtr cbtnHandle;        // ... "Clear List" button handle
+    private static IntPtr txtHandle;         // ... TextBox handler (server input)
+    private static string title;             // ... vcguard server title
+    
     /// <summary>
     /// Author of the assembly file.
     /// </summary>
-    public static string API_AUTHOR = "Floxen; ten.neznamey@seznam.cz; v2.1.5";
+    public static string API_AUTHOR = "Floxen; ten.neznamey@seznam.cz; v2.3.7";
 
     /// <summary>
     /// Security settings.
     /// </summary>
-    private static int waitBeforeAct = 1;
-    private static int maxTexLength = 2048;
+    private static int waitBeforeAct = 1;    // ... keep some delay here
+    private static int maxTexLength = 2048;  // ... maximum length of sending string (i should set limit, much data can cause server crash)
 
     /// <summary>
     /// Security levels.
     /// LOW
     /// </summary>
     public static readonly int NO_SECURITY = 0;
+
     /// <summary>
     /// Normal security
     /// </summary>
     public static readonly int NORMAL_SECURITY = 1;
+
     /// <summary>
     /// High secuity
     /// </summary>
@@ -77,7 +82,7 @@ public class VCGuardAPI
 
         foreach (var process in Process.GetProcesses())
         {
-            if (process.MainWindowTitle.EndsWith(port))
+            if (process.MainWindowTitle.ToLower().Contains("vcguard") && process.MainWindowTitle.EndsWith(port))
             {
                 hwdHandle = process.MainWindowHandle;
                 title = process.MainWindowTitle.Trim();
@@ -603,18 +608,22 @@ public class VCGuardAPI
         /// Player ID
         /// </summary>
         public int Id { get; set; }
+
         /// <summary>
         /// Player PING
         /// </summary>
         public int Ping { get; set; }
+
         /// <summary>
         /// Player NAME
         /// </summary>
         public string Name { get; set; }
+
         /// <summary>
         /// Player KILLS
         /// </summary>
         public int Kills { get; set; }
+
         /// <summary>
         /// Player DEATHS
         /// </summary>
@@ -637,9 +646,9 @@ public class VCGuardAPI
 
         string dataBefore = lbgd.GetData(hwdHandle).Trim();
         ClearList();
-        Thread.Sleep(20);
+        Thread.Sleep(60);
         RawSend("LIST");
-        Thread.Sleep(20);
+        Thread.Sleep(60);
         string getData = lbgd.GetData(hwdHandle).Trim();
         ClearList();
 
@@ -689,9 +698,9 @@ public class VCGuardAPI
 
         string dataBefore = lbgd.GetData(hwdHandle).Trim();
         ClearList();
-        Thread.Sleep(20);
+        Thread.Sleep(60);
         RawSend(command);
-        Thread.Sleep(20);
+        Thread.Sleep(60);
         string getData = lbgd.GetData(hwdHandle).Trim();
         ClearList();
 
@@ -730,5 +739,118 @@ public class VCGuardAPI
         }
 
         return int.Parse(fps);
+    }
+
+    /// <summary>
+    /// VCGuard window table data structure
+    /// </summary>
+    public class PlayerTableStructure
+    {
+        /// <summary>
+        /// Number in vcguard  table.
+        /// </summary>
+        public int Number;
+
+        /// <summary>
+        /// Player ID.
+        /// </summary>
+        public int Id;
+
+        /// <summary>
+        /// Player name.
+        /// </summary>
+        public string Name;
+
+        /// <summary>
+        /// Player side, like US or VC.
+        /// </summary>
+        public string Side;
+
+        /// <summary>
+        /// Player class like Soldier, Medic, Engineer, Radioman, Machineguner or Sniper.
+        /// </summary>
+        public string Class;
+
+        /// <summary>
+        /// Players points (taken flags or kills on DM/TDM)
+        /// </summary>
+        public int Points;
+
+        /// <summary>
+        /// Frags on DM/TDM.
+        /// </summary>
+        public int Frags;
+
+        /// <summary>
+        /// Players kills.
+        /// </summary>
+        public int Kills;
+
+        /// <summary>
+        /// Players deaths.
+        /// </summary>
+        public int Deaths;
+
+        /// <summary>
+        /// Players ping.
+        /// </summary>
+        public int Ping;
+
+        /// <summary>
+        /// Players ip address.
+        /// </summary>
+        public string IpAddress;
+
+        /// <summary>
+        /// Players country name.
+        /// </summary>
+        public string CountryName;
+    }
+
+    /// <summary>
+    /// Get players from vcguard window table.
+    /// </summary>
+    /// <returns></returns>
+    public static List<PlayerTableStructure> GetVcguardTablePlayers()
+    {
+        var application = Application.Attach(Process.GetProcessById(VCGuardAPI.GetPID()));
+        Window window = application.GetWindow(title);
+
+        List<PlayerTableStructure> playerListTable = new List<PlayerTableStructure>();
+
+        try
+        {
+            playerList.Clear();
+
+            var elements = window.Items;
+
+            string buildUp = "";
+
+            int countRow = 0;
+            foreach (var element in elements)
+            {
+                if (element.Id == "")
+                {
+                    buildUp += element.Name.Trim() + " ====== ";
+                    countRow++;
+
+                    if (countRow == 12)
+                    {
+                        countRow = 0;
+
+                        string[] data = buildUp.Split(new[] { " ====== " }, StringSplitOptions.None);
+
+                        playerListTable.Add(new PlayerTableStructure { Number = int.Parse(data[0].Trim()), Id = int.Parse(data[1].Trim()), Name = data[2].Trim(), Side = data[3].Trim(), Class = data[4].Trim(), Points = int.Parse(data[5].Trim()), Frags = int.Parse(data[6].Trim()), Kills = int.Parse(data[7].Trim()), Deaths = int.Parse(data[8].Trim()), Ping = int.Parse(data[9].Trim()), IpAddress = data[10].Trim(), CountryName = data[11].Trim() });
+
+                        buildUp = "";
+                    }
+                }
+            }
+
+            Console.Clear();
+        }
+        catch (Exception excp) { Console.WriteLine(excp.Message); }
+
+        return playerListTable;
     }
 }
